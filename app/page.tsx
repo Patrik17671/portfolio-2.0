@@ -1,16 +1,13 @@
-import { getHero } from '@/utils/fetches/getHero'
-import ConsoleLog from "@/utils/consoleLog";
-export default async function Home() {
-  const heroContent = await getHero();
-
-  const title = heroContent?.title[0]?.children[0]?.text;
-
+import Hero from '@/components/hero/Hero';
+import ConsoleLog from '@/utils/consoleLog';
+import { getHero } from '@/utils/fetches/getHero';
+const Home = async () => {
+  const hero = await getHero();
   return (
     <main>
-      <ConsoleLog log={heroContent} />
-      <div className={'container'}>
-        <h1>{title}</h1>
-      </div>
+      <ConsoleLog log={hero} />
+      <Hero />
     </main>
-  )
-}
+  );
+};
+export default Home;

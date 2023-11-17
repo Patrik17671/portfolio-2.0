@@ -1,8 +1,8 @@
 import { apiHeaders } from '@/utils'
 
-export async function getHero() {
+export async function getWebInstance() {
   try {
-    const res = await fetch(`${process.env.API_BASE_URL}/api/globals/hero-content`, {
+    const res = await fetch(`${process.env.API_BASE_URL}/api/globals/web-instance`, {
       method: 'GET',
       headers: {
         ...apiHeaders,

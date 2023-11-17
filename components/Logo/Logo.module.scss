@@ -1,0 +1,10 @@
+@import "styles/variables";
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.logo{
+	color: $white;
+	font-family: 'Lobster', sans-serif;
+	font-size: 3.2rem;
+	display: flex;
+	align-items: center;
+}
