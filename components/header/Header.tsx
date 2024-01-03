@@ -2,10 +2,10 @@ import styles from './Header.module.scss';
 import { getMenu } from '@/utils/fetches/getMenu';
 import HeaderClient from '@/components/header/HeaderClient';
 import Logo from '@/components/Logo/Logo';
+import { getGlobals } from '@/utils/fetches/getGlobals';
 
 export default async function Header() {
-  const { nav } = await getMenu();
-  console.log(nav);
+  const { nav } = await getGlobals({ slug: 'mega-menu' });
   return (
     <HeaderClient>
       <div className={styles.wrapper}>

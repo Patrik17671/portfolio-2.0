@@ -1,12 +1,12 @@
 import Hero from '@/components/hero/Hero';
-import ConsoleLog from '@/utils/consoleLog';
-import { getHero } from '@/utils/fetches/getHero';
+import About from '@/components/about/About';
+import Projects from '@/components/projects/Projects';
 const Home = async () => {
-  const hero = await getHero();
   return (
     <main>
-      <ConsoleLog log={hero} />
       <Hero />
+      <About />
+      <Projects />
     </main>
   );
 };

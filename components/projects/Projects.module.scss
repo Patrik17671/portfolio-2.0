@@ -1,0 +1,53 @@
+@import "styles/variables";
+
+.projects{
+	background: $black;
+	height: 100rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	h2{
+		text-align: center;
+	}
+	.list{
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		max-height: 50rem;
+		overflow: auto;
+		position: relative;
+		&::before{
+			position: absolute;
+			width: 100%;
+			bottom: 0;
+			left: 0;
+			height: 50%;
+			background: linear-gradient(to bottom, $black, transparent);;
+		}
+	}
+	.card{
+		padding: 2rem;
+		border-radius: 3px;
+		display: flex;
+		gap: 2rem;
+		.image{
+			border-radius: .5rem;
+			overflow: hidden;
+			min-width: 40rem;
+			display: flex;
+			img{
+				object-fit: cover;
+			}
+		}
+		.content{
+			h3{
+				color: $white;
+				margin-bottom: 1.5rem;
+			}
+			p{
+				color: $alt;
+				font-size: 1.6rem;
+			}
+		}
+	}
+}

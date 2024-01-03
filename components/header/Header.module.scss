@@ -11,6 +11,9 @@
 	top: 0;
 	z-index: 10;
 	transition: 0.5s all ease;
+	@media (max-width: $md) {
+		height: 7.6rem;
+	}
 	.container{
 		height: 100%;
 		display: flex;
@@ -22,6 +25,23 @@
 		height: 100%;
 		width: 100%;
 	}
+	&.activeMenu{
+		@media (max-width: $md){
+			ul{
+				transform: translateX(0);
+				opacity: 1;
+				pointer-events: auto;
+			}
+			.menu{
+				opacity: 0 !important;
+				pointer-events: none !important;
+			}
+			.close{
+				opacity: 1 !important;
+				pointer-events: auto !important;
+			}
+		}
+	}
 	ul{
 		display: flex;
 		align-items: center;
@@ -31,24 +51,24 @@
 			position: absolute;
 			width: 100%;
 			left: 0;
+			top: 100%;
 			background: $black;
 			flex-direction: column;
 			align-items: center;
 			transform: translateX(-100%);
 			opacity: 0;
 			pointer-events: none;
-			&.active{
-				transform: translateX(0);
-				opacity: 1;
-				pointer-events: auto;
-			}
+			padding-bottom: 1rem;
+			height: fit-content;
 		}
 		li{
 			height: 50%;
 			@media (max-width: $md) {
 				width: 100%;
 				text-align: center;
+				background: $black;
 				a{
+					padding: 1rem 0;
 					justify-content: center;
 				}
 			}
@@ -71,20 +91,30 @@
 	}
 	.hamburger{
 		display: none;
-		max-width: 2.5rem;
+		width: 2.5rem;
 		color: $white;
+		position: relative;
 		svg{
 			max-width: 100%;
+			position: absolute;
+			left: 0;
+			top: 50%;
+			color: $white;
+			transform: translateY(-50%);
+			transition: all .2s;
 		}
+		.close{
+			opacity: 0;
+			pointer-events: none;
+		}
+		.menu{
+			opacity: 1;
+			pointer-events: auto;
+		}
+		
 		@media (max-width: $md) {
 			display: flex;
 			align-items: center;
 		}
-	}
-	.close{
-		display: none;
-		max-width: 2.5rem;
-		color: $white;
-		position: absolute;
 	}
 }

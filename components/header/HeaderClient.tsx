@@ -10,12 +10,10 @@ const HeaderClient = ({ children }) => {
   return (
     <header className={`${styles.header} ${activeMenu ? styles.activeMenu : ''}`}>
       <div className={'container ' + styles.container}>
-        <span className={styles.close} onClick={() => setActiveMenu(!activeMenu)}>
-          <IconClose />
-        </span>
         {children}
         <span className={styles.hamburger} onClick={() => setActiveMenu(!activeMenu)}>
-          <IconMenu />
+          <IconMenu className={styles.menu} />
+          <IconClose className={styles.close} />
         </span>
       </div>
     </header>

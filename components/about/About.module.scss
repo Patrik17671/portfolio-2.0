@@ -1,0 +1,23 @@
+@import "styles/variables";
+
+.about{
+	background: $alt1;
+	min-height: 100rem;
+	display: flex;
+	align-items: center;
+}
+
+.wrapper{
+	display: flex;
+	gap: 3rem;
+	.image{
+		border-radius: 3%;
+	}
+	.content{
+		p{
+			font-size: 1.6rem;
+			color: $alt;
+			margin-bottom: 2rem;
+		}
+	}
+}

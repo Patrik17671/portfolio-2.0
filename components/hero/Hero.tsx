@@ -1,20 +1,32 @@
 import styles from './Hero.module.scss';
-import { getHero } from '@/utils/fetches/getHero';
 import isEmpty from 'lodash/isEmpty';
-import ConsoleLog from '@/utils/consoleLog';
-import { Suspense } from 'react';
+import { convertToHtml } from '@/utils';
+import ImageNext from 'next/image';
+import { getGlobals } from '@/utils/fetches/getGlobals';
 const Hero = async () => {
-  const hero = await getHero();
+  const hero = await getGlobals({ slug: 'hero-content' });
 
-  const title = hero?.title[0]?.children[0]?.text;
+  const bgImg = hero?.file?.url;
 
   return (
     <div className={styles.hero}>
-      <Suspense>
-        <ConsoleLog log={hero} />
-      </Suspense>
+      <ImageNext
+        className={styles.bgImg}
+        src={bgImg}
+        alt={'Pozadie'}
+        width={1920}
+        height={1281}
+        priority={true}
+      />
       <div className={'container'}>
-        {!isEmpty(hero?.title) ? <div dangerouslySetInnerHTML={{ __html: title }} /> : ''}
+        {!isEmpty(hero?.title) ? (
+          <div
+            className={styles.content}
+            dangerouslySetInnerHTML={{ __html: convertToHtml(hero?.title) }}
+          />
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );
