@@ -1,7 +1,10 @@
 'use client';
 
-const ConsoleLog = log => {
+import { FC } from 'react';
+
+const ConsoleLog: FC<{ log: any }> = ({ log }) => {
   console.log(log);
-  return '';
+  return null;
 };
+
 export default ConsoleLog;

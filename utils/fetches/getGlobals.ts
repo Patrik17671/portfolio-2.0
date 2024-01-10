@@ -1,6 +1,10 @@
 import { apiHeaders } from '@/utils';
 
-export async function getGlobals(props) {
+type GlobalProps = {
+  slug: string;
+};
+
+export async function getGlobals(props: GlobalProps) {
   const slug = props?.slug;
 
   try {

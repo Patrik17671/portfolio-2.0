@@ -1,24 +1,24 @@
 import { getGlobals } from '@/utils/fetches/getGlobals';
-import ConsoleLog from '@/utils/consoleLog';
 import ImageNext from 'next/image';
 import { convertToHtml } from '@/utils';
 import styles from './About.module.scss';
+import { FC } from 'react';
+import { AboutType, PhotoType } from '@/types';
 
-const About = async () => {
-  const about = await getGlobals({ slug: 'about-content' });
-  const photo = { src: about?.file?.url, alt: about?.file?.alt };
+const About: FC = async () => {
+  const about: AboutType = await getGlobals({ slug: 'about-content' });
+  const photo: PhotoType = { src: about?.file?.cloudinary?.secure_url, alt: about?.file?.alt };
 
   return (
     <section className={styles.about}>
       <div className={'container'}>
-        <ConsoleLog log={about} />
         <div className={styles.wrapper}>
           <div>
-            {photo?.url ? (
+            {photo?.src ? (
               <ImageNext
                 className={styles.image}
-                src={photo?.src}
-                alt={photo?.alt}
+                src={photo.src}
+                alt={photo?.alt || 'photo'}
                 width={502}
                 height={610}
               />

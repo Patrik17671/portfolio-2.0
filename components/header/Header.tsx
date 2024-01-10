@@ -1,8 +1,11 @@
 import styles from './Header.module.scss';
-import { getMenu } from '@/utils/fetches/getMenu';
 import HeaderClient from '@/components/header/HeaderClient';
-import Logo from '@/components/Logo/Logo';
+import Logo from '@/components/logo/Logo';
 import { getGlobals } from '@/utils/fetches/getGlobals';
+import isEmpty from 'lodash/isEmpty';
+import { NavItemType } from '@/types';
+import map from 'lodash/map';
+import ConsoleLog from '@/utils/consoleLog';
 
 export default async function Header() {
   const { nav } = await getGlobals({ slug: 'mega-menu' });
@@ -10,15 +13,19 @@ export default async function Header() {
     <HeaderClient>
       <div className={styles.wrapper}>
         <Logo />
-        <ul>
-          {nav.map((item, index) => {
-            return (
-              <li key={index}>
-                <a href={`#${item?.elementId}`}>{item.label}</a>
-              </li>
-            );
-          })}
-        </ul>
+        {!isEmpty(nav) ? (
+          <ul>
+            {map(nav, (item: NavItemType, index: number) => {
+              return (
+                <li key={index}>
+                  <a href={`#${item?.elementId}`}>{item.label}</a>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          ''
+        )}
       </div>
     </HeaderClient>
   );

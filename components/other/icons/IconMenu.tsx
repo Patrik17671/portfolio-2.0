@@ -1,4 +1,6 @@
-const IconMenu = props => {
+import React from 'react';
+
+const IconMenu: React.FC<React.HTMLAttributes<HTMLOrSVGElement>> = props => {
   return (
     <svg
       {...props}

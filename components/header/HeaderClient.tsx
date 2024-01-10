@@ -2,9 +2,15 @@
 import styles from '@/components/header/Header.module.scss';
 import IconMenu from '@/components/other/icons/IconMenu';
 import IconClose from '@/components/other/icons/IconClose';
-import { useState } from 'react';
+import { FC, useState } from 'react';
+import ConsoleLog from '@/utils/consoleLog';
+import { ReactNode } from 'react';
 
-const HeaderClient = ({ children }) => {
+type ChildrenType = {
+  children?: ReactNode;
+};
+
+const HeaderClient: FC<ChildrenType> = ({ children }) => {
   const [activeMenu, setActiveMenu] = useState(false);
 
   return (

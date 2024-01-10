@@ -1,15 +1,20 @@
 import styles from './Projects.module.scss';
 import ImageNext from 'next/image';
 import { convertToHtml } from '@/utils';
+import { PhotoType, ProjectType } from '@/types';
+import { FC } from 'react';
 
-const Card = ({ project }) => {
-  const photo = { src: project?.file?.url, alt: project?.file?.alt };
+type CardProps = {
+  project: ProjectType;
+};
+const Card: FC<CardProps> = ({ project }) => {
+  const photo: PhotoType = { src: project?.file?.cloudinary?.secure_url, alt: project?.file?.alt };
 
   return (
     <div className={styles.card}>
-      {photo ? (
+      {photo.src ? (
         <div className={styles.image}>
-          <ImageNext src={photo?.src} alt={photo?.alt} width={400} height={200} />
+          <ImageNext src={photo.src} alt={photo.alt || 'photo'} width={400} height={200} />
         </div>
       ) : (
         ''

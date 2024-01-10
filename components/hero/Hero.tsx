@@ -3,26 +3,31 @@ import isEmpty from 'lodash/isEmpty';
 import { convertToHtml } from '@/utils';
 import ImageNext from 'next/image';
 import { getGlobals } from '@/utils/fetches/getGlobals';
-const Hero = async () => {
-  const hero = await getGlobals({ slug: 'hero-content' });
-
-  const bgImg = hero?.file?.url;
+import { FC } from 'react';
+import { HeroType } from '@/types';
+const Hero: FC = async () => {
+  const hero: HeroType = await getGlobals({ slug: 'hero-content' });
+  const bgImg = hero.file?.url;
 
   return (
     <div className={styles.hero}>
-      <ImageNext
-        className={styles.bgImg}
-        src={bgImg}
-        alt={'Pozadie'}
-        width={1920}
-        height={1281}
-        priority={true}
-      />
+      {bgImg ? (
+        <ImageNext
+          className={styles.bgImg}
+          src={bgImg}
+          alt={'Pozadie'}
+          width={1920}
+          height={1281}
+          priority={true}
+        />
+      ) : (
+        ''
+      )}
       <div className={'container'}>
-        {!isEmpty(hero?.title) ? (
+        {!isEmpty(hero.title) ? (
           <div
             className={styles.content}
-            dangerouslySetInnerHTML={{ __html: convertToHtml(hero?.title) }}
+            dangerouslySetInnerHTML={{ __html: convertToHtml(hero.title) }}
           />
         ) : (
           ''

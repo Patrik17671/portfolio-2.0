@@ -1,13 +1,13 @@
 import styles from './Projects.module.scss';
 import { getGlobals } from '@/utils/fetches/getGlobals';
-import ConsoleLog from '@/utils/consoleLog';
 import map from 'lodash/map';
 import Card from './Card';
-const Projects = async () => {
-  const data = await getGlobals({ slug: 'projects-content' });
+import { FC } from 'react';
+import { ProjectsDataType } from '@/types';
+const Projects: FC = async () => {
+  const data: ProjectsDataType = await getGlobals({ slug: 'projects-content' });
   return (
     <section className={styles.projects}>
-      <ConsoleLog log={data} />
       <div className={'container'}>
         {data?.title ? <h2>{data?.title}</h2> : ''}
         <div className={styles.list}>
